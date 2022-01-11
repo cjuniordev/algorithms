@@ -27,7 +27,6 @@ int selectionSort(int *list, int len){
             if(list[j] < smaller){
                 smaller = list[j];
                 swap(&list[i], &list[j]);
-                printList(list, len);
             }
         }
     }
@@ -36,9 +35,11 @@ int selectionSort(int *list, int len){
 int main(){
     int myList[10] = {4, 1, 15, 8, 3, 2, 5, 8, 11, 10};
 
+    printf("Unsorted: ");
     printList(myList, 10);
     selectionSort(myList, 10);
+    printf("  Sorted: ");
     printList(myList, 10);
-    
+
     return 0;
 }
