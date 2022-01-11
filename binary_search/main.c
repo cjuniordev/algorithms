@@ -31,7 +31,7 @@ int printList(int *list, int n){
 }
 
 void printResult(int *list, int v, int r){
-    if(v == -1){
+    if(r == (-1)){
         printf("Searching %d in ", v);
         printList(list, 10);
         printf("... Value not found in list!\n");
@@ -57,20 +57,19 @@ int main(){
     value = 7;
     result = binSearch(single, 0, 1-1, value);
     printResult(single, value, result);
-
     value = 7;
     result = binSearch(pair, 0, 2-1, value);
     printResult(pair, value, result);
-
     value = 8;
     result = binSearch(odd, 0, 11-1, value);
     printResult(odd, value, result);
-
     value = 31;
     result = binSearch(even, 0, 12-1, value);
     printResult(even, value, result);
-
     value = 21;
+    result = binSearch(repeated, 0, 12-1, value);
+    printResult(repeated, value, result);
+    value = 0;
     result = binSearch(repeated, 0, 12-1, value);
     printResult(repeated, value, result);
 
