@@ -84,6 +84,16 @@ void generateNumbers(int *list, int len){ // generate 'random' numbers
     }
 }
 
+void freeTree(Node* no){
+    if(no->left != NULL)
+        freeTree(no->left);
+
+    if(no->right != NULL)
+        freeTree(no->right);
+    
+    free(no);
+}
+
 int main(){
     Node *root;
     int len = 20;
@@ -112,5 +122,6 @@ int main(){
     }
     
     free(numbers);
+    freeTree(root);
     return 0;
 }
