@@ -19,14 +19,18 @@ void createNode(Node** no, int n){
     (*no)->right = NULL;
 }
 
-void show(Node* no){ // show in pos-order
+void showInOrder(Node* no){ // show in pos-order
     if(no->left != NULL)
-        show(no->left);
+        showInOrder(no->left);
 
     printf("%d ", no->data);
 
     if(no->right != NULL)
-        show(no->right);
+        showInOrder(no->right);
+}
+
+void showByLevel(Node* no){
+
 }
 
 int heightNode(Node* no){
@@ -108,7 +112,7 @@ int main(){
         }
     }
 
-    show(root);
+    showInOrder(root);
     printf("\n\n");
 
     int find[10] = {15, 36, 1, 40, 16, 78, 90, 92, 7, 0};
