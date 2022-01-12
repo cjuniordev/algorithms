@@ -7,6 +7,11 @@ typedef struct node{
     struct node* right;
 } Node;
 
+void createNullNode(Node** no){
+    (*no) = (Node*)malloc(sizeof(Node));
+    (*no) = NULL;
+}
+
 void createNode(Node** no, int n){
     (*no) = (Node*)malloc(sizeof(Node));
     (*no)->data = n;
@@ -37,10 +42,40 @@ int heightNode(Node* no){
     return hl+1;
 }
 
+void insert(Node* root, int n){
+    Node *temp = root, *child, *parent;
+    createNode(&child, n);
+    createNullNode(&parent);
+    while(temp != NULL){
+        parent = temp;
+        if(n < temp->data){
+            temp = temp->left;
+        } else{
+            temp = temp->right;
+        }
+    }
+
+    if(parent == NULL){
+        createNode(&root, n);
+    } else if(n < (parent->data)){
+        parent->left = child;
+    } else{
+        parent->right = child;
+    }
+    
+}
+
 int main(){
     Node *root, *n1, *n2, *n3, *n4, *n5, *n6, *n7;
 
-    createNode(&root, 0);
+    createNode(&root, 61);
+    insert(root, 51);
+    insert(root, 63);
+    insert(root, 11);
+    insert(root, 55);
+    insert(root, 70);
+    insert(root, 65);
+    /*
     createNode(&n1, 1);
     createNode(&n2, 2);
     createNode(&n3, 3);
@@ -55,7 +90,7 @@ int main(){
     n1->right = n4;
     n2->right = n7;
     n4->left = n5;
-    n4->right = n6;
+    n4->right = n6;*/
 
     show(root);
 
