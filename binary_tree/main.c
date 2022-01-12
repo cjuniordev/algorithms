@@ -77,11 +77,20 @@ Node* binarySearchTree(Node* no, int n){
     }
 }
 
+void generateNumbers(int *list, int len){ // generate 'random' numbers
+    srand(1);
+    for(int i=0; i < len; i++){
+        list[i] = rand() % 100;
+    }
+}
+
 int main(){
     Node *root;
-    int numbers[7] = {61, 51, 63, 11, 55, 70, 65};
+    int len = 20;
+    int *numbers = (int *)calloc(len, sizeof(int));
+    generateNumbers(numbers, len);
 
-    for(int i=0; i<7; i++){
+    for(int i=0; i<len; i++){
         if(i!=0){
             insert(root, numbers[i]);
         } else{
@@ -89,14 +98,19 @@ int main(){
         }
     }
 
-    Node *res = binarySearchTree(root, 51);
-    if(res == NULL){
-        printf("Nao encontrado");
-    } else{
-        printf("Encontrado\n");
-        show(res);
-    } 
-    printf("\n");
+    show(root);
+    printf("\n\n");
 
+    int find[10] = {15, 36, 1, 40, 16, 78, 90, 92, 7, 0};
+    for(int i=0; i<10; i++){
+        Node *res = binarySearchTree(root, find[i]);
+        if(res == NULL){
+            printf("%d nao encontrado\n", find[i]);
+        } else{
+            printf("%d encontrado\n", find[i]);
+        }
+    }
+    
+    free(numbers);
     return 0;
 }
