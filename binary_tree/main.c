@@ -29,10 +29,6 @@ void showInOrder(Node* no){ // show in pos-order
         showInOrder(no->right);
 }
 
-void showByLevel(Node* no){
-
-}
-
 int heightNode(Node* no){
     int hr=0, hl=0; // height left and right = 0
     if(no->left != NULL)
