@@ -42,10 +42,11 @@ int heightNode(Node* no){
     return hl+1;
 }
 
-void insert(Node* root, int n){
+void insert(Node* root, int n){    
     Node *temp = root, *child, *parent; // init nodes
     createNode(&child, n);
     createNullNode(&parent);
+
     while(temp != NULL){
         parent = temp;
         if(n < temp->data){ // run in left if n < temp
@@ -62,7 +63,6 @@ void insert(Node* root, int n){
     } else{
         parent->right = child; // else, has child in right
     }
-    
 }
 
 Node* binarySearchTree(Node* no, int n){
@@ -77,15 +77,16 @@ Node* binarySearchTree(Node* no, int n){
 }
 
 int main(){
-    Node *root, *n1, *n2, *n3, *n4, *n5, *n6, *n7;
+    Node *root;
+    int numbers[7] = {61, 51, 63, 11, 55, 70, 65};
 
-    createNode(&root, 61);
-    insert(root, 51);
-    insert(root, 63);
-    insert(root, 11);
-    insert(root, 55);
-    insert(root, 70);
-    insert(root, 65);
+    for(int i=0; i<7; i++){
+        if(i!=0){
+            insert(root, numbers[i]);
+        } else{
+            createNode(&root, numbers[i]);
+        }
+    }
 
     Node *res = binarySearchTree(root, 51);
     show(res);
