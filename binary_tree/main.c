@@ -66,9 +66,10 @@ void insert(Node* root, int n){
 }
 
 Node* binarySearchTree(Node* no, int n){
-    if(no == NULL || no->data == n){
+    if(no == NULL)
+        return NULL;
+    if(no->data == n)
         return no;
-    }
     if(n < no->data){
         return binarySearchTree(no->left, n);
     } else{
@@ -89,7 +90,12 @@ int main(){
     }
 
     Node *res = binarySearchTree(root, 51);
-    show(res);
+    if(res == NULL){
+        printf("Nao encontrado");
+    } else{
+        printf("Encontrado\n");
+        show(res);
+    } 
     printf("\n");
 
     return 0;
