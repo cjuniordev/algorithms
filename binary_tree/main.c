@@ -65,6 +65,17 @@ void insert(Node* root, int n){
     
 }
 
+Node* binarySearchTree(Node* no, int n){
+    if(no == NULL || no->data == n){
+        return no;
+    }
+    if(n < no->data){
+        return binarySearchTree(no->left, n);
+    } else{
+        return binarySearchTree(no->right, n);
+    }
+}
+
 int main(){
     Node *root, *n1, *n2, *n3, *n4, *n5, *n6, *n7;
 
@@ -92,10 +103,11 @@ int main(){
     n4->left = n5;
     n4->right = n6;*/
 
-    show(root);
+    Node *res = binarySearchTree(root, 51);
+    show(res);
 
-    int h = heightNode(root);
-    printf("h: %d\n", h);
+    // int h = heightNode(root);
+    // printf("h: %d\n", h);
 
     return 0;
 }
