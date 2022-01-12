@@ -23,10 +23,10 @@ void show(Node* no){ // show in pos-order
     if(no->left != NULL)
         show(no->left);
 
+    printf("%d ", no->data);
+
     if(no->right != NULL)
         show(no->right);
-
-    printf("%d\n", no->data);
 }
 
 int heightNode(Node* no){
@@ -90,6 +90,7 @@ int main(){
 
     Node *res = binarySearchTree(root, 51);
     show(res);
+    printf("\n");
 
     return 0;
 }
