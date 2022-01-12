@@ -24,6 +24,19 @@ void show(Node* no){ // show in pos-order
     printf("%d\n", no->data);
 }
 
+int heightNode(Node* no){
+    int hr=0, hl=0; // height left and right = 0
+    if(no->left != NULL)
+        hl = heightNode(no->left) ; // getting heigth of left node
+    if(no->right != NULL)
+        hr = heightNode(no->right); // getting heigth of right node
+
+    if(hr > hl)
+        return hr+1;
+
+    return hl+1;
+}
+
 int main(){
     Node *root, *n1, *n2, *n3, *n4, *n5, *n6, *n7;
 
@@ -45,7 +58,9 @@ int main(){
     n4->right = n6;
 
     show(root);
-    printf("\n");
+
+    int h = heightNode(root);
+    printf("h: %d\n", h);
 
     return 0;
 }
