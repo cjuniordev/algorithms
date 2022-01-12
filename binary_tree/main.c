@@ -14,6 +14,16 @@ void createNode(Node** no, int n){
     (*no)->right = NULL;
 }
 
+void show(Node* no){ // show in pos-order
+    if(no->left != NULL)
+        show(no->left);
+
+    if(no->right != NULL)
+        show(no->right);
+
+    printf("%d\n", no->data);
+}
+
 int main(){
     Node *root;
     Node *n1;
@@ -22,6 +32,7 @@ int main(){
     Node *n4;
     Node *n5;
     Node *n6;
+    Node *n7;
 
     createNode(&root, 0);
     createNode(&n1, 1);
@@ -30,11 +41,13 @@ int main(){
     createNode(&n4, 4);
     createNode(&n5, 5);
     createNode(&n6, 6);
+    createNode(&n7, 7);
 
     root->left = n1;
     root->right = n2;
     n1->left = n3;
-    n2->right = n4;
+    n1->right = n4;
+    n2->right = n7;
     n4->left = n5;
     n4->right = n6;
 
