@@ -1,6 +1,15 @@
 #include <stdio.h>
 #include <stdlib.h>
 
+void printMatrix(int **M, int m, int n){
+    for(int i=0; i<m; i++){
+        for(int j=0; j<=n; j++){
+            printf("%d\t", M[i][j]);
+        }
+        printf("\n");
+    }
+}
+
 void alocateMatrix(int **A, int m, int n){
     for(int i=0; i<m; i++){
         A[i] = malloc(n * sizeof(int));
@@ -72,12 +81,7 @@ int main(){
 
     gauss(augment, row, col+1);
 
-    for(int i=0; i<row; i++){
-        for(int j=0; j<=col; j++){
-            printf("%d\t", augment[i][j]);
-        }
-        printf("\n");
-    }
+    printMatrix(augment, row, col);
 
     freeMatrix(A, row);
     freeMatrix(augment, row);
