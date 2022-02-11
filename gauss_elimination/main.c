@@ -1,15 +1,19 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-void freeMatriz(int **A, int m){
+void alocateMatrix(int **A, int m, int n){
+    for(int i=0; i<m; i++){
+        A[i] = malloc(n * sizeof(int));
+    }
+}
+
+void freeMatrix(int **A, int m){
     for(int i=0; i<m; i++) free(A[i]);
 }
 
 void augmentMatrix(int **A, int *b, int m, int n, int **Ab){
     // A[m][n]
-    for(int i=0; i<m; i++){
-        Ab[i] = malloc((n+1) * sizeof(int));
-    }
+    alocateMatrix(Ab, m, (n+1));
 
     for(int i=0; i<m; i++){
         for(int j=0; j<n; j++){
@@ -24,9 +28,7 @@ int main(){
     int **A = (int **)malloc(row * sizeof(int*)), 
          *b = (int *)malloc(row * sizeof(int));    
 
-    for(int i=0; i<row; i++){
-        A[i] = malloc(col * sizeof(int));
-    }
+    alocateMatrix(A, row, col);
 
     A[0][0] = 1;
     A[0][1] = 3;
@@ -36,7 +38,6 @@ int main(){
     b[1] = 60;
 
     int **augment = (int **)malloc(row * sizeof(int*));
-
     augmentMatrix(A, b, row, col, augment);
 
     for(int i=0; i<row; i++){
@@ -46,8 +47,8 @@ int main(){
         printf("\n");
     }
 
-    freeMatriz(A, row);
-    freeMatriz(augment, row);
+    freeMatrix(A, row);
+    freeMatrix(augment, row);
 
     return 0;
 }
