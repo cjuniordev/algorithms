@@ -23,6 +23,18 @@ void augmentMatrix(int **A, int *b, int m, int n, int **Ab){
     }
 }
 
+void gauss(int **Ab, int m, int n){
+    int k, m_pivot = 0, n_pivot = 0;
+    int pivot = Ab[m_pivot][n_pivot];
+
+    if(pivot != 0){
+        k = Ab[m_pivot+1][n_pivot] / pivot;
+        for(int i=0; i<n; i++){
+            Ab[m_pivot+1][i] = Ab[m_pivot+1][i] - (k * Ab[m_pivot][i]);
+        }
+    }
+}
+
 int main(){
     int row = 2, col = 2;
     int **A = (int **)malloc(row * sizeof(int*)), 
@@ -39,6 +51,8 @@ int main(){
 
     int **augment = (int **)malloc(row * sizeof(int*));
     augmentMatrix(A, b, row, col, augment);
+
+    gauss(augment, row, col+1);
 
     for(int i=0; i<row; i++){
         for(int j=0; j<=col; j++){
