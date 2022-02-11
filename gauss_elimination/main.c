@@ -33,23 +33,27 @@ void augmentMatrix(int **A, int *b, int m, int n, int **Ab){
 }
 
 void gauss(int **Ab, int m, int n){
-    int k, m_pivot, n_pivot, pivot;
+    int m_pivot, n_pivot, pivot;
+    float k;
 
-    // for(int i=0; i<m; i++){
-        m_pivot = 0, n_pivot = 0;
+    for(int i=0; i<m; i++){
+        m_pivot = i, n_pivot = i;
         pivot = Ab[m_pivot][n_pivot];
         
-        
         if(pivot != 0){
-            for(int l=1; l<m; l++){
-                k = Ab[m_pivot+l][n_pivot] / pivot;
-                for(int j=0; j<n; j++){
-                    Ab[m_pivot+l][j] = Ab[m_pivot+l][j] - (k * Ab[m_pivot][j]);
+            if(pivot != 1){
+                for(int j=0; j<=n; j++) Ab[m_pivot][j] = Ab[m_pivot][j] / pivot; // pivot == 1
+                pivot = Ab[m_pivot][n_pivot];
+            }
+
+            for(int l=m_pivot+1; l<m; l++){ // get lines under pivot
+                k = Ab[l][n_pivot] / pivot;
+                for(int j=0; j<=n; j++){
+                    Ab[l][j] = Ab[l][j] - (k * Ab[m_pivot][j]);
                 }
             }
         }
-    //}
-    
+    }
 }
 
 int main(){
@@ -79,8 +83,12 @@ int main(){
     int **augment = (int **)malloc(row * sizeof(int*));
     augmentMatrix(A, b, row, col, augment);
 
+    printf("before:\n");
+    printMatrix(augment, row, col);
+
     gauss(augment, row, col+1);
 
+    printf("\nlater:\n");
     printMatrix(augment, row, col);
 
     freeMatrix(A, row);
