@@ -1,6 +1,10 @@
 #include <stdio.h>
 #include <stdlib.h>
 
+void freeMatriz(int **M, int rows){
+    for(int i=0; i<rows; i++) free(M[i]);
+}
+
 int main(){
     int col = 2;
     int row = 2;
@@ -17,6 +21,8 @@ int main(){
         printf("\n");
     }
 
+
+    freeMatriz(matriz, row);
 
     return 0;
 }
