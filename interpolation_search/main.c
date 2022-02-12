@@ -8,11 +8,17 @@ void printList(int *v, int n){
     printf("\n");
 }
 
-float interpolation(int *v, int left, int right, int x){ // x is a wanted search 
-    float pos;
+int interpolation(int *v, int left, int right, int x){ // x is a wanted search 
+    int pos;
 
     float division = (float)(x - v[left]) / (float)(v[right] - v[left]);
-    pos = left - ((left - right) * division); // interpolation
+    pos = (int)(left - ((left - right) * division)); // interpolation
+
+    if(x < v[pos]){
+        pos = interpolation(v, left, pos, x);
+    } else if(x > v[pos]){
+        pos = interpolation(v, pos, right, x);
+    }
 
     return pos;
 }
@@ -36,9 +42,18 @@ int main(){
     list2[8] = 31;
     list2[9] = 43;
 
-    printList(list2, n);
+    printList(list, n);
+    int x = 18;
+    printf("Searching: %d\n", x);
+    int r = interpolation(list, 0, n-1, x);
+    printf("v[%d]: %d\n", r, list[r]);
 
-    int r = (int)interpolation(list2, 0, n-1, 27);
+    printf("\n");
+
+    printList(list2, n);
+    x = 27;
+    printf("Searching: %d\n", x);
+    r = interpolation(list2, 0, n-1, x);
     printf("v[%d]: %d\n", r, list2[r]);
 
     free(list);
